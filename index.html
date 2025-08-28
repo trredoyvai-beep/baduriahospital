@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BADURIA HEALTH CENTER</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0d0d0d;color:#fff;line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;transition:0.5s;}
+  
+  header .logo {
+  font-size: 1rem; /* আগের 1.3rem থেকে ছোট করে 1rem করা হলো */
+  font-weight: bold;
+  color: #ff4500;
+  text-shadow: 0 0 10px #ff6347;
+}
+
+/* ===== Header ===== */
+  header .logo {
+
+  font-size: 1.3rem; /* আগের 1.8rem থেকে ছোট করা হয়েছে */
+
+  font-weight: bold;
+
+  color: #ff4500;
+
+  text-shadow: 0 0 15px #ff6347;
+
+}
+header{position:fixed;width:100%;top:0;left:0;z-index:1000;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1.5rem;}
+header .logo{font-size:1.8rem;font-weight:bold;color:#ff4500;text-shadow:0 0 15px #ff6347;}
+header nav{position:relative;}
+.menu{display:flex;gap:1rem;}
+.menu li{position:relative;}
+.menu li a{padding:0.4rem 0.8rem;display:block;color:#fff;font-weight:500;}
+.menu li:hover > a{color:#ff6347;}
+.submenu{display:none;position:absolute;top:100%;left:0;background:rgba(20,20,20,0.95);border-radius:10px;min-width:180px;}
+.submenu li a{padding:0.5rem 1rem;}
+.menu li:hover .submenu{display:block;}
+
+  header {
+  padding: 0.5rem 1rem; /* compact header */
+  height: 50px;
+}
+
+header .logo {
+  font-size: 0.8rem; /* অনেক ছোট করা */
+  font-weight: bold;
+  color: #ff4500;
+  text-shadow: 0 0 8px #ff6347;
+}
+
+.menu {
+  gap: 0.5rem; /* menu item গুলো কাছাকাছি */
+}
+
+.marquee {
+  margin-top: 50px; /* header height অনুযায়ী adjust */
+  font-size: 0.9rem;
+}
+  
+.contact-container{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;}
+#contact-form{background:rgba(40,40,40,0.85);padding:1.5rem;border-radius:15px;width:350px;box-shadow:0 0 20px #ff4500;display:flex;flex-direction:column;gap:1rem;}
+#contact-form input,#contact-form textarea{padding:0.5rem;border-radius:10px;border:none;outline:none;}
+#contact-form button{background:#ff4500;color:#fff;padding:0.7rem;border:none;border-radius:10px;cursor:pointer;transition:0.3s;}
+#contact-form button:hover{background:#ff6347;box-shadow:0 0 20px #ff4500;}
+.map{width:400px;border-radius:15px;overflow:hidden;box-shadow:0 0 20px #ff4500;}
+  
+  
+.accordion{max-width:800px;margin:2rem auto;display:flex;flex-direction:column;gap:1rem;}
+.accordion-item{background:rgba(40,40,40,0.85);border-radius:10px;overflow:hidden;box-shadow:0 0 20px #ff4500;}
+.accordion-btn{width:100%;text-align:left;padding:1rem;background:none;border:none;color:#ff4500;font-size:1rem;font-weight:bold;cursor:pointer;outline:none;position:relative;transition:0.3s;}
+.accordion-btn::after{content:'+';position:absolute;right:1rem;font-size:1.2rem;transition:0.3s;}
+.accordion-btn.active::after{content:'-';}
+.accordion-content{max-height:0;overflow:hidden;padding:0 1rem;color:#fff;transition:max-height 0.3s ease;}
+.accordion-content p{padding:0.5rem 0;}
+  
+  
+  
+  
+/* ===== Hamburger ===== */
+.hamburger{display:none;font-size:2rem;cursor:pointer;color:#ff4500;}
+@media(max-width:768px){
+.menu{flex-direction:column;position:absolute;top:60px;left:0;width:100%;background:#111;display:none;}
+.menu.show{display:flex;}
+.menu li .submenu{position:relative;top:0;left:0;}
+.hamburger{display:block;}
+}
+
+/* ===== Marquee ===== */
+.marquee{width:100%;background:#111;padding:0.5rem 0;overflow:hidden;white-space:nowrap;box-shadow:0 0 10px #ff4500;margin-top:60px;}
+.marquee p{display:inline-block;animation:marquee 15s linear infinite;color:#ff6347;font-weight:bold;margin-left:100%;}
+@keyframes marquee{0%{transform:translateX(0%);}100%{transform:translateX(-100%);}}
+
+/* ===== Hero Section ===== */
+#hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;margin-top:0;}
+.hero-slide{position:absolute;width:100%;height:100%;opacity:0;transition:opacity 1.5s ease-in-out;top:0;left:0;z-index:1;}
+.hero-slide.active{opacity:1;}
+.hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5);}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2;}
+.hero-fire{position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle,rgba(255,69,0,0.2) 0%,rgba(255,140,0,0) 70%);animation:fireMove 2s infinite alternate;z-index:3;}
+@keyframes fireMove{0%{transform:translateY(0) scale(1);}100%{transform:translateY(-30px) scale(1.1);}}
+.hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;color:#ff4500;text-shadow:0 0 20px #ff6347,0 0 40px #ff4500;}
+.hero-text h1{font-size:3rem;margin-bottom:1rem;animation:slideFromLeft 1s ease forwards;}
+.hero-text p{font-size:1.3rem;margin-bottom:1.5rem;animation:slideFromRight 1s ease forwards;}
+.hero-text .btn{padding:0.8rem 2rem;background:#ff4500;color:#fff;border-radius:50px;font-weight:500;transition:0.3s;}
+.hero-text .btn:hover{background:#ff6347;transform:scale(1.05);box-shadow:0 0 40px #ff6347,0 0 80px #ff4500;}
+  
+  
+  
+  
+
+/* ===== Sections ===== */
+  
+  footer{background:rgba(20,20,20,0.9);color:#fff;padding:2rem 1rem;position:relative;box-shadow:0 -5px 20px #ff4500;}
+.footer-container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;max-width:1200px;margin:auto;}
+.footer-about h3{color:#ff4500;margin-bottom:0.5rem;}
+.footer-about p{font-size:0.9rem;line-height:1.4;}
+.footer-links ul{list-style:none;padding:0;}
+.footer-links ul li a{color:#fff;text-decoration:none;transition:0.3s;}
+.footer-links ul li a:hover{color:#ff6347;}
+.footer-social a img{width:30px;height:30px;margin-right:0.5rem;transition:0.3s;}
+.footer-social a img:hover{transform:scale(1.2);filter:drop-shadow(0 0 10px #ff4500);}
+.footer-bottom{margin-top:2rem;text-align:center;font-size:0.85rem;position:relative;}
+#toggle-lang{background:#ff4500;color:#fff;padding:0.3rem 0.7rem;border:none;border-radius:8px;cursor:pointer;transition:0.3s;}
+#toggle-lang:hover{background:#ff6347;box-shadow:0 0 20px #ff4500;}
+  
+section{padding:6rem 2rem;opacity:0;transform:translateY(50px);transition:1s;background:rgba(20,20,20,0.85);backdrop-filter:blur(10px);border-radius:15px;margin:2rem auto;max-width:1200px;position:relative;z-index:1;}
+section.show{opacity:1;transform:translateY(0);}
+section h2{text-align:center;font-size:2rem;color:#ff4500;margin-bottom:2rem;text-shadow:0 0 10px #ff6347;}
+section p{text-align:center;max-width:700px;margin:auto;color:#fff;line-height:1.6;}
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;}
+.card{background:rgba(40,40,40,0.85);padding:1.5rem;border-radius:15px;width:240px;box-shadow:0 0 20px #ff4500;transition:0.5s;text-align:center;position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 50px #ff6347;}
+.card img{border-radius:15px;margin-bottom:1rem;transition:0.5s;}
+.card img:hover{transform:scale(1.1) rotate(2deg);box-shadow:0 0 50px #ff4500;}
+.card h3{color:#ff4500;margin-bottom:0.5rem;}
+.card::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));transform:skewX(-20deg);transition:0.7s;}
+.card:hover::before{left:100%;}
+
+/* ===== Animations ===== */
+@keyframes slideFromLeft{0%{opacity:0;transform:translateX(-100px);}100%{opacity:1;transform:translateX(0);}}
+@keyframes slideFromRight{0%{opacity:0;transform:translateX(100px);}100%{opacity:1;transform:translateX(0);}}
+
+@media(max-width:768px){.cards{flex-direction:column;align-items:center;}#hero h1{font-size:2rem;}#hero p{font-size:1rem;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">BADURIA HEALTH CENTER</div>
+<div class="hamburger">☰</div>
+<nav>
+<ul class="menu">
+<li><a href="#hero">Home</a></li>
+<li><a href="#about">About</a></li>
+<li>
+  <a href="#">Services ▼</a>
+  <ul class="submenu">
+    <li><a href="#doctors">Doctors</a></li>
+    <li><a href="#services">Treatments</a></li>
+    <li><a href="#labs">Labs</a></li>
+    <li><a href="#blood">Blood Bank</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#">Community ▼</a>
+  <ul class="submenu">
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#donation">Donation</a></li>
+    <li><a href="#multimedia">Multimedia</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#volunteer">Volunteer</a></li>
+    <li><a href="#helpline">Helpline</a></li>
+  </ul>
+</li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<div class="theme-toggle">🌙</div>
+</header>
+
+<div class="marquee"><p>⚠️ জরুরি নোটিশ: সকল রোগীদের জন্য নতুন স্বাস্থ্য নির্দেশনা প্রযোজ্য ⚠️</p></div>
+
+<section id="hero">
+<div class="hero-slide active"><img src="hero1.jpg" alt=""></div>
+<div class="hero-slide"><img src="hero2.jpg" alt=""></div>
+<div class="hero-slide"><img src="hero3.jpg" alt=""></div>
+<div class="hero-overlay"></div>
+<div class="hero-fire"></div>
+<div class="hero-text">
+<h1>অল্প খরচে মানসম্মত চিকিৎসা</h1>
+<p>Your health, our priority</p>
+<a href="#contact" class="btn">Appointment</a>
+</div>
+</section>
+
+<section id="about">
+<h2>আমাদের পরিচিতি / About Us</h2>
+<p>বাদুড়িয়া স্বাস্থ্য সেবা কেন্দ্র 2021 সালে প্রতিষ্ঠিত। অভিজ্ঞ ডাক্তার ও আধুনিক মেশিনের মাধ্যমে সেবা প্রদান করা হয়।<br>Established in 2021, equipped with modern machines and expert doctors.</p>
+</section>
+
+<section id="doctors">
+<h2>আমাদের ডাক্তারবৃন্দ / Doctors</h2>
+<div class="cards">
+<div class="card"><img src="doctor1.jpg" alt=""><h3>ড. হাসান / Dr. Hasan</h3><p>Medicine Specialist</p></div>
+<div class="card"><img src="doctor2.jpg" alt=""><h3>ড. ফাতেমা / Dr. Fatema</h3><p>Gynecologist</p></div>
+<div class="card"><img src="doctor3.jpg" alt=""><h3>ড. আরিফ / Dr. Arif</h3><p>Pediatrician</p></div>
+</div>
+</section>
+  
+  <section id="treatment">
+  <h2>চিকিৎসা সেবা / Treatments</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>জেনারেল মেডিসিন / General Medicine</h3>
+      <p>সকল সাধারণ রোগের পরীক্ষা ও চিকিৎসা।</p>
+    </div>
+    <div class="card">
+      <h3>পেডিয়াট্রিক / Pediatrics</h3>
+      <p>শিশুদের স্বাস্থ্য পরীক্ষা ও রোগ নির্ণয়।</p>
+    </div>
+    <div class="card">
+      <h3>গাইনোকোলজি / Gynecology</h3>
+      <p>নারী স্বাস্থ্য ও প্রেগনেন্সি কেয়ার।</p>
+    </div>
+    <div class="card">
+      <h3>ডার্মাটোলজি / Dermatology</h3>
+      <p>ত্বক সম্পর্কিত রোগ ও সমস্যার চিকিৎসা।</p>
+    </div>
+    <div class="card">
+      <h3>কার্ডিয়োলজি / Cardiology</h3>
+      <p>হৃদরোগ পরীক্ষা ও চিকিৎসা।</p>
+    </div>
+  </div>
+</section>
+  
+  
+  <section id="labs">
+  <h2>ল্যাব সুবিধা / Laboratory</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="lab1.jpg" alt="Blood Test">
+      <h3>রক্ত পরীক্ষা / Blood Test</h3>
+      <p>সঠিক ও দ্রুত ফলাফল, আধুনিক যন্ত্রপাতি ব্যবহার।</p>
+    </div>
+    <div class="card">
+      <img src="lab2.jpg" alt="Urine Test">
+      <h3>মূত্র পরীক্ষা / Urine Test</h3>
+      <p>পরীক্ষার মাধ্যমে রোগ নির্ণয় সহজ ও নির্ভুল।</p>
+    </div>
+    <div class="card">
+      <img src="lab3.jpg" alt="X-Ray">
+      <h3>এক্স-রে / X-Ray</h3>
+      <p>উন্নত মানের এক্স-রে সুবিধা, দ্রুত রিপোর্ট।</p>
+    </div>
+    <div class="card">
+      <img src="lab4.jpg" alt="ECG">
+      <h3>ইসিজি / ECG</h3>
+      <p>হৃদরোগ পরীক্ষা আধুনিক ইসিজি মেশিনের মাধ্যমে।</p>
+    </div>
+  </div>
+</section>
+  
+  <section id="blood">
+  <h2>রক্ত ব্যাংক / Blood Bank</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="blood1.jpg" alt="Blood Storage">
+      <h3>রক্ত সংরক্ষণ / Blood Storage</h3>
+      <p>সতর্কভাবে সংরক্ষিত রক্তের স্টক, জরুরি রোগীর জন্য সর্বদা প্রস্তুত।</p>
+    </div>
+    <div class="card">
+      <img src="blood2.jpg" alt="Blood Donation">
+      <h3>রক্ত দান / Blood Donation</h3>
+      <p>স্বেচ্ছাসেবী দাতাদের মাধ্যমে নিরাপদ এবং স্বাস্থ্যকর রক্ত সরবরাহ।</p>
+    </div>
+    <div class="card">
+      <img src="blood3.jpg" alt="Blood Testing">
+      <h3>রক্ত পরীক্ষা / Blood Testing</h3>
+      <p>সঠিক ও দ্রুত পরীক্ষা, সংক্রমণ মুক্ত রক্ত নিশ্চিত।</p>
+    </div>
+  </div>
+</section>
+  
+  <section id="multimedia">
+  <h2>গ্যালারি / Multimedia Gallery</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="gallery1.jpg" alt="Lab Image" onclick="openModal(this)">
+      <h3>ল্যাব সেবা / Lab</h3>
+    </div>
+    <div class="card">
+      <img src="gallery2.jpg" alt="Doctor Image" onclick="openModal(this)">
+      <h3>ডাক্তারবৃন্দ / Doctors</h3>
+    </div>
+    <div class="card">
+      <img src="gallery3.jpg" alt="Patient Care" onclick="openModal(this)">
+      <h3>রোগী সেবা / Patient Care</h3>
+    </div>
+    <div class="card">
+      <img src="gallery4.jpg" alt="Blood Bank" onclick="openModal(this)">
+      <h3>রক্ত ব্যাংক / Blood Bank</h3>
+    </div>
+  </div>
+
+  <!-- Modal for full image -->
+  <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:10000;">
+    <span onclick="closeModal()" style="position:absolute;top:20px;right:40px;font-size:3rem;color:#ff4500;cursor:pointer;">&times;</span>
+    <img id="modal-img" src="" style="max-width:90%;max-height:90%;border-radius:15px;box-shadow:0 0 50px #ff4500;">
+  </div>
+</section>
+  
+  
+  <section id="testimonials">
+  <h2>রোগীর মতামত / Testimonials</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="patient1.jpg" alt="Patient 1">
+      <h3>মোঃ রিয়াজ / Md. Riaz</h3>
+      <p>“বাদুড়িয়া স্বাস্থ্য সেবা কেন্দ্রের চিকিৎসা খুবই কার্যকর। ডাক্তাররা খুবই সহায়ক।”</p>
+    </div>
+    <div class="card">
+      <img src="patient2.jpg" alt="Patient 2">
+      <h3>ফাতেমা খাতুন / Fatema Khatun</h3>
+      <p>“এখানকার ল্যাব এবং রক্ত ব্যাংক সেবা সত্যিই প্রশংসনীয়। সব কিছু আধুনিক।”</p>
+    </div>
+    <div class="card">
+      <img src="patient3.jpg" alt="Patient 3">
+      <h3>সাদিকুর রহমান / Sadikur Rahman</h3>
+      <p>“আমি সহজে Appointment পেয়েছি এবং চিকিৎসা মানসম্পন্ন ছিল। অনেক ধন্যবাদ।”</p>
+    </div>
+  </div>
+</section>
+  
+  
+  <section id="faq">
+  <h2>প্রায়শই জিজ্ঞাসিত প্রশ্ন / FAQ</h2>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-btn">কিভাবে Appointment নিবো? / How to take an appointment?</button>
+      <div class="accordion-content">
+        <p>আপনি Contact Form বা ফোন নম্বর ব্যবহার করে সহজেই Appointment নিতে পারবেন।</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">রক্ত ব্যাংক কি নিরাপদ? / Is the Blood Bank safe?</button>
+      <div class="accordion-content">
+        <p>হ্যাঁ, সব রক্ত আধুনিক যন্ত্রপাতি এবং সংক্রমণ পরীক্ষা সহ সংরক্ষিত হয়।</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-btn">ল্যাব রিপোর্ট কত দিনে পাওয়া যাবে? / How fast are lab reports?</button>
+      <div class="accordion-content">
+        <p>সাধারণ পরীক্ষা ২৪–৪৮ ঘন্টার মধ্যে রিপোর্ট প্রদান করা হয়।</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+  
+  
+<section id="donation">
+  <h2>দানপত্র / Donations</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="bkash.png" alt="bKash">
+      <h3>bKash</h3>
+      <p>Send your donation to 017XXXXXXXX</p>
+    </div>
+    <div class="card">
+      <img src="nagad.png" alt="Nagad">
+      <h3>Nagad</h3>
+      <p>Send your donation to 017XXXXXXXX</p>
+    </div>
+    <div class="card">
+      <img src="rocket.png" alt="Rocket">
+      <h3>Rocket</h3>
+      <p>Send your donation to 017XXXXXXXX</p>
+    </div>
+    <div class="card">
+      <img src="bank.png" alt="Bank">
+      <h3>Bank</h3>
+      <p>Account: 1234567890, Bank Name</p>
+    </div>
+    <div class="card">
+      <img src="visa.png" alt="Visa">
+      <h3>Visa</h3>
+      <p>Use secure Visa payment gateway</p>
+    </div>
+  </div>
+  
+ 
+  <section id="career">
+  <h2>চাকুরি / Career Opportunities</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ডাক্তার / Doctor</h3>
+      <p>চাকরির ধরন: ফুল টাইম, যোগ্যতা: MBBS, অভিজ্ঞতা: ২+ বছর</p>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+    <div class="card">
+      <h3>নার্স / Nurse</h3>
+      <p>চাকরির ধরন: ফুল টাইম, যোগ্যতা: BSc Nursing, অভিজ্ঞতা: ১+ বছর</p>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+    <div class="card">
+      <h3>ল্যাব টেকনিশিয়ান / Lab Technician</h3>
+      <p>চাকরির ধরন: ফুল টাইম, যোগ্যতা: Diploma in Lab Technology, অভিজ্ঞতা: ১+ বছর</p>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+  </div>
+</section>
+  
+  
+  <section id="volunteer">
+  <h2>স্বেচ্ছাসেবক / Volunteer</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>স্বাস্থ্য সহায়ক / Health Assistant</h3>
+      <p>রোগী সেবা ও স্বাস্থ্য ক্যাম্পে স্বেচ্ছাসেবক হিসেবে কাজ করতে পারবেন।</p>
+      <button class="signup-btn">Sign Up</button>
+    </div>
+    <div class="card">
+      <h3>রক্তদান সহায়ক / Blood Donation Assistant</h3>
+      <p>রক্ত ব্যাংক ও রক্তদান ক্যাম্পে স্বেচ্ছাসেবক হিসেবে অংশগ্রহণ।</p>
+      <button class="signup-btn">Sign Up</button>
+    </div>
+    <div class="card">
+      <h3>প্রশিক্ষণ সহায়ক / Training Assistant</h3>
+      <p>নতুন স্বেচ্ছাসেবক প্রশিক্ষণ ও orientation এ সহায়তা প্রদান।</p>
+      <button class="signup-btn">Sign Up</button>
+    </div>
+  </div>
+</section>
+  
+  <section id="helpline">
+  <h2>হেল্পলাইন / Helpline</h2>
+  <div class="helpline-cards">
+    <div class="card">
+      <h3>ফোন / Phone</h3>
+      <p>+880 17XXXXXXXX</p>
+      <button onclick="window.location.href='tel:+88017XXXXXXXX'">Call Now</button>
+    </div>
+    <div class="card">
+      <h3>ইমেইল / Email</h3>
+      <p>info@baduriahealth.com</p>
+      <button onclick="window.location.href='mailto:info@baduriahealth.com'">Send Email</button>
+    </div>
+    <div class="card">
+      <h3>WhatsApp</h3>
+      <p>+880 17XXXXXXXX</p>
+      <button onclick="window.open('https://wa.me/88017XXXXXXXX','_blank')">Chat Now</button>
+    </div>
+  </div>
+</section>
+  
+  <section id="contact">
+  <h2>যোগাযোগ / Contact Us</h2>
+  <div class="contact-container">
+    <form id="contact-form">
+      <input type="text" placeholder="আপনার নাম / Your Name" required>
+      <input type="email" placeholder="ইমেইল / Email" required>
+      <input type="text" placeholder="বিষয় / Subject" required>
+      <textarea placeholder="মেসেজ / Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!..." 
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+  
+  
+  
+  <footer>
+  <div class="footer-container">
+    <div class="footer-about">
+      <h3>BADURIA HEALTH CENTER</h3>
+      <p>সকলের জন্য আধুনিক চিকিৎসা সেবা। Low cost, High quality healthcare for all.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#treatment">Treatment</a></li>
+        <li><a href="#blood">Blood Bank</a></li>
+        <li><a href="#multimedia">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Social</h4>
+      <a href="#"><img src="facebook.png" alt="Facebook" /></a>
+      <a href="#"><img src="twitter.png" alt="Twitter" /></a>
+      <a href="#"><img src="instagram.png" alt="Instagram" /></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Baduria Health Center. All rights reserved. | Developed with ❤️</p>
+    <button id="toggle-lang">বাংলা/English</button>
+  </div>
+</footer>
+  
+</section>
+<script>
+// Hamburger toggle
+const hamburger=document.querySelector('.hamburger');
+const menu=document.querySelector('.menu');
+hamburger.addEventListener('click',()=>{menu.classList.toggle('show');});
+
+  
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Thank you! আপনার মেসেজ পাঠানো হয়েছে। / Your message has been sent.');
+  this.reset();
+});
+  
+// Dark/Light mode
+const toggle=document.querySelector('.theme-toggle');
+toggle.addEventListener('click',()=>{document.body.classList.toggle('dark-mode');toggle.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';});
+
+// Hero slideshow
+let slideIndex=0;
+const slides=document.querySelectorAll('.hero-slide');
+function showSlides(){
+slides.forEach((s)=>{s.classList.remove('active');});
+slideIndex++;
+if(slideIndex>slides.length-1) slideIndex=0;
+slides[slideIndex].classList.add('active');
+setTimeout(showSlides,4000);}
+showSlides();
+
+// Scroll reveal
+const sections=document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+sections.forEach(sec=>{if(sec.getBoundingClientRect().top<window.innerHeight-100){sec.classList.add('show');}});
+});
+  
+  
+  const accordionBtns=document.querySelectorAll('.accordion-btn');
+accordionBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.classList.toggle('active');
+    const content=btn.nextElementSibling;
+    if(content.style.maxHeight){
+      content.style.maxHeight=null;
+    }else{
+      content.style.maxHeight=content.scrollHeight+'px';
+    }
+  });
+});
+  
+  
+  
+  
+</script>
+</body>
+</html>
